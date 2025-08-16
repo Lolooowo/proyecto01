@@ -1,15 +1,18 @@
 class Producto:
-    def __init__(self,nombre,precio, stock, categoria):
+    def __init__(self,nombre,precio, stock):
         self.nombre = nombre
         self.precio = precio
         self.stock = stock
-        self.categoria = categoria
     def __str__(self):
-        return f"Producto: {self.nombre} | Precio: {self.precio} | Categoria: {self.categoria} | Stock: {self.stock}"
+        return f"Producto: {self.nombre} | Precio: {self.precio} | Stock: {self.stock}"
 class GestionProducto:
     def __init__(self):
         self.productos = {}
     def ingreso_productos(self):
+        nombre = str
+        precio = float
+        stock = int
+        codigo = int
         while True:
             try:
                 codigo = int(input("Ingrese el codigo del producto: "))
@@ -17,12 +20,32 @@ class GestionProducto:
                     print(f"(CodigoDuplicadoError)")
                     print()
                 else:
-                    return False
+                    break
             except(ValueError):
-                print("El codigo no es valido")
+                print("cantidad ingresada incorrecta")
                 input()
         while True:
-            nombre = input("Ingrese el nombre del producto: ")
+            try:
+                nombre = input("Ingrese el nombre del producto: ")
+                while True:
+                    precio = float(input("Ingrese el precio del producto: "))
+                    if precio < 0:
+                        print("No se pueden ingresar un precio negativo")
+                    else:
+                        break
+                while True:
+                    stock = int(input("Ingrese el stock del producto: "))
+                    if stock < 0:
+                        print("No se pueden ingresa una cantidad de productos negativas")
+                    else:
+                        break
+                break
+            except(ValueError):
+                print("Ingrese el valor que se especifica")
+                input()
+            nuevo_producto = Producto(nombre, precio, stock)
+
+
 
 GestionProducto = GestionProducto()
 
