@@ -9,10 +9,6 @@ class GestionProducto:
     def __init__(self):
         self.productos = {}
     def ingreso_productos(self):
-        #nombre = str
-        #precio = float
-        #stock = int
-        #codigo = int
         while True:
             try:
                 codigo = int(input("Ingrese el codigo del producto: "))
@@ -113,11 +109,6 @@ class Buscador:
             print(f"|{i}| {clave} |")
             print(valor["producto"])
             i =+1
-
-
-
-
-
 GestionProducto = GestionProducto()
 Ordenador = Ordenador()
 Buscador = Buscador()
@@ -181,7 +172,48 @@ while True:
                 case _:
                     print("Ingrese una opcion correcta")
         case 4:
-            pass
+            print("1. Modificar el precio de un producto.")
+            print("2. Modificar el stock de un producto.")
+            print("3. Salir al menú principal")
+            opcion4 = int(input("Ingrese una opcion: "))
+            match opcion4:
+                case 1:
+                    encontrado ={}
+                    encontrar = input("Ingrese el codigo del producto: ")
+                    for clave, valor in GestionProducto.productos.items():
+                        if clave == encontrar:
+                            encontrado = GestionProducto.productos[encontrar]
+                            print("Producto Encontrado")
+                            input()
+                        else:
+                            print("Producto no encontrado")
+                            input()
+                    nuevoPrecio = input(f"Ingrese el nuevo precio para el producto: {encontrado['producto'].nombre}: ")
+                    print(f"Precio anterior: {encontrado['producto'].precio}")
+                    encontrado["producto"].precio = nuevoPrecio
+                    print(f"Nuevo precio {encontrado['producto'].precio}")
+                    input()
+                case 2:
+                    encontrado = {}
+                    encontrar = input("Ingrese el codigo del producto: ")
+                    for clave, valor in GestionProducto.productos.items():
+                        if clave == encontrar:
+                            encontrado = GestionProducto.productos[encontrar]
+                            print("Producto Encontrado")
+                            input()
+                        else:
+                            print("Producto no encontrado")
+                            input()
+                    nuevoStock = input(f"Ingrese el nuevo stock para el producto: {encontrado['producto'].stock}: ")
+                    print(f"Stock anterior: {encontrado['producto'].stock}")
+                    encontrado["producto"].stock = nuevoStock
+                    print(f"Nuevo stock: {nuevoStock}")
+                    input()
+                case 3:
+                    print("Saliendo al menú principal....")
+                    break
+                case _:
+                    print("Ingrese una opcion correcta")
         case 5:
             print("Saliendo del programa....")
             break
