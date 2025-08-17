@@ -107,6 +107,13 @@ class Buscador:
                 print(valor["producto"])
             else:
                 print("No existe el producto ingresado")
+    def historialBusqueda(self):
+        i= 1
+        for clave, valor in GestionProducto.productos.items():
+            print(f"|{i}| {clave} |")
+            print(valor["producto"])
+            i =+1
+
 
 
 
@@ -157,8 +164,22 @@ while True:
                 case _:
                     print("Ingrese una opcion correcta")
         case 3:
-            buscado = input("Ingrese el codigo del producto: ")
-            Buscador.buscar(buscado)
+            print("1. Buscar un producto.")
+            print("2. Historial de productos buscados.")
+            print("3. Salir al menú principal")
+            opcion3 = int(input("Ingrese una opcion: "))
+            match opcion3:
+                case 1:
+                    buscado = input("Ingrese el codigo del producto: ")
+                    Buscador.buscar(buscado)
+                case 2:
+                    print("HISTORIAL DE BUSQUEDAS")
+                    Buscador.historialBusqueda()
+                case 3:
+                    print("Saliendo al menú principal....")
+                    break
+                case _:
+                    print("Ingrese una opcion correcta")
         case 4:
             pass
         case 5:
