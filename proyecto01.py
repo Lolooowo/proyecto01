@@ -9,10 +9,10 @@ class GestionProducto:
     def __init__(self):
         self.productos = {}
     def ingreso_productos(self):
-        nombre = str
-        precio = float
-        stock = int
-        codigo = int
+        #nombre = str
+        #precio = float
+        #stock = int
+        #codigo = int
         while True:
             try:
                 codigo = int(input("Ingrese el codigo del producto: "))
@@ -95,10 +95,25 @@ class Ordenador:
 class Buscador:
     def __init__(self):
         self.busquedas = {}
+    def buscar(self, codigo):
+        for clave, valor in GestionProducto.productos.items():
+            if clave == codigo:
+                self.busquedas[clave] = {
+                    "producto": valor
+                }
+                print("Producto Encontrado.")
+                input()
+                print(f"\tcodigo: {clave}")
+                print(valor["producto"])
+            else:
+                print("No existe el producto ingresado")
+
+
+
 
 GestionProducto = GestionProducto()
 Ordenador = Ordenador()
-productos = []
+Buscador = Buscador()
 
 while True:
     print("1. Ingreso Producto")
@@ -142,7 +157,15 @@ while True:
                 case _:
                     print("Ingrese una opcion correcta")
         case 3:
-
+            buscado = input("Ingrese el codigo del producto: ")
+            Buscador.buscar(buscado)
+        case 4:
+            pass
+        case 5:
+            print("Saliendo del programa....")
+            break
+        case _:
+            print("Ingrese una opcion correcta")
 
 
 
