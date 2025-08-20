@@ -74,9 +74,9 @@ class Ordenador:
             return lista
         else:
             pivote = lista[0]
-            mayores = [x for x in lista[1:] if x[1]["producto"].precio > pivote[1]["producto"].precio]
-            iguales = [x for x in lista if x[1]["producto"].precio == pivote[1]["producto"].precio]
-            menores = [x for x in lista[1:] if x[1]["producto"].precio < pivote[1]["producto"].precio]
+            mayores = [x for x in lista[1:] if x["producto"].precio > pivote["producto"].precio]
+            iguales = [x for x in lista if x["producto"].precio == pivote["producto"].precio]
+            menores = [x for x in lista[1:] if x["producto"].precio < pivote["producto"].precio]
             return self.ordenamientoNombre(dict(menores)) + iguales + self.ordenamientoNombre(dict(mayores))
     def ordenamientoStock(self, productos):
         lista = list(productos.items())
@@ -92,20 +92,20 @@ class Buscador:
     def __init__(self):
         self.busquedas = {}
     def buscar(self, codigo):
+        encontrado = Producto
         for clave, valor in GestionProducto.productos.items():
             if clave == codigo:
-                self.busquedas[clave] = {
-                    "producto": valor
-                }
+                encontrado = GestionProducto.productos[codigo]
                 print("Producto Encontrado.")
                 input()
-                print(f"\tcodigo: {clave}")
-                print(valor["producto"])
-            else:
-                print("No existe el producto ingresado")
+                self.busquedas[codigo] = {
+                    "producto": encontrado["producto"]
+                }
+                print(f"{encontrado["producto"]}")
+
     def historialBusqueda(self):
         i= 1
-        for clave, valor in GestionProducto.productos.items():
+        for clave, valor in Buscador.busquedas.items():
             print(f"|{i}| {clave} |")
             print(valor["producto"])
             i =+1
